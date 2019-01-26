@@ -28,13 +28,14 @@ public class player_controller : MonoBehaviour {
 		
 		Vector3 moviment= new Vector3(Input.GetAxisRaw("Horizontal"),0, 0);
 
-		transform.position= Vector3.MoveTowards(transform.position, transform.position + moviment, speed*Time.deltaTime);
+        RB.velocity = new Vector2(moviment.x * speed, RB.velocity.y);
+
         if (moviment.x != 0)
             transform.localScale = new Vector3(-moviment.x, 1f, 1f);
 
         Anim.SetFloat("Movx", Mathf.Abs(moviment.x));
 
-		if(Input.GetKeyDown(KeyCode.UpArrow))
+		if(Input.GetKeyDown(KeyCode.UpArrow) && Grounded)
 		{
 			jump=true;
             Anim.SetTrigger("Jump");
