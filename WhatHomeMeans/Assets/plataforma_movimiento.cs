@@ -37,19 +37,6 @@ public class plataforma_movimiento : MonoBehaviour {
 		
 	}
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
-        //para que sea un objeto con tag "Player" lo que pueda hacer caer la plataforma
-        if(collision.gameObject.CompareTag("Player"))
-        {
-
-			tocar=true;
-
-        }
-
-    }
-
 
     // Update is called once per frame
     private void FixedUpdate()
@@ -74,11 +61,6 @@ public class plataforma_movimiento : MonoBehaviour {
                 objetivo.position = (objetivo.position == inicio) ? fin : inicio;
 
             }
-
-			//if (tocar)
-			{
-				Player.transform.parent = plataforma_automatica.transform;
-			}
 
 
         }
