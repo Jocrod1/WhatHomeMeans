@@ -40,7 +40,6 @@ public class player_controller : MonoBehaviour {
 		{
 			RB.AddForce(Vector2.up * JumpPower, ForceMode2D.Impulse);
 			jump=false;
-
 		}
 	}
 }
