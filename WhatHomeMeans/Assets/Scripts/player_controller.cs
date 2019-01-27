@@ -15,17 +15,18 @@ public class player_controller : MonoBehaviour {
 
     public float logVelocity;
 
-    Collider2D GroundColl;
+    public BoxCollider2D GroundColl;
 
 	// Use this for initialization
 	void Start () {
         Anim = GetComponent<Animator>();
 		RB= GetComponent<Rigidbody2D>();
-        GroundColl = GetComponentInChildren<Collider2D>();
 	}
 	
 	// Update is called once per frame
 	private void Update () {
+        
+        AnimatorStateInfo StateInfo = Anim.GetCurrentAnimatorStateInfo(0);
 
         logVelocity = RB.velocity.y;
 		
@@ -43,6 +44,10 @@ public class player_controller : MonoBehaviour {
 			jump=true;
             Anim.SetTrigger("Jump");
 		}
+
+        if (!Grounded){
+            GroundColl.enabled = StateInfo.IsName("Fall");
+        }
 
 	}
 

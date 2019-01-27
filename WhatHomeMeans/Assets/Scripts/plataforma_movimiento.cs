@@ -16,6 +16,9 @@ public class plataforma_movimiento : MonoBehaviour {
 	public GameObject plataforma_automatica;
 
     private Vector3 inicio, fin;
+    bool entrar;
+
+    private bool disparador;
 
     //public trigger_movimiento trigger_movimiento;
 
@@ -34,6 +37,8 @@ public class plataforma_movimiento : MonoBehaviour {
             //marcamos que las variables son el objeto y el objetivo
             inicio = transform.position;
             fin = objetivo.position;
+
+            objetivo.position = inicio;
 
         }
 
@@ -65,12 +70,41 @@ public class plataforma_movimiento : MonoBehaviour {
 
             }
 
+            if (entrar == true)
+            {
+                Player.transform.parent = plataforma_automatica.transform;
+
+                disparador = true;
+
+            }
+            else if (entrar == false && disparador)
+            {
+                Player.transform.parent = null;
+
+                disparador = false;
+            }
 
 
         }
 
 
 
+    }
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            entrar = true;
+        }
+
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            entrar = false;
+        }
     }
 
 
