@@ -15,6 +15,8 @@ public Transform objetivo;
 
 	public trigger_plataforma trigger_plataforma;
 
+    private bool disparador;
+
 	// Use this for initialization
 	void Start () {
 
@@ -30,6 +32,9 @@ public Transform objetivo;
             //marcamos que las variables son el objeto y el objetivo
             inicio = transform.position;
             fin = objetivo.position;
+
+
+            objetivo.position=inicio;
 
         }
 
@@ -62,11 +67,15 @@ public Transform objetivo;
 					Player.transform.parent = suelo_movible.transform;
 					objetivo.position=fin;
 
+                    disparador= true;
+
 				}
-				else if (trigger_plataforma.entrar==false)
+				else if (trigger_plataforma.entrar==false && disparador)
 				{
 					Player.transform.parent = null;
 					objetivo.position=inicio;
+
+                    disparador=false;
 				}
 				
 
