@@ -17,9 +17,13 @@ public class plataforma_movimiento : MonoBehaviour {
 
     private Vector3 inicio, fin;
 
+    //public trigger_movimiento trigger_movimiento;
+
 
 	// Use this for initialization
 	void Start () {
+
+        //trigger_movimiento = plataforma_automatica.GetComponentInChildren<trigger_movimiento>();
 
         if(objetivo !=null)
         {
@@ -54,13 +58,13 @@ public class plataforma_movimiento : MonoBehaviour {
 
 
 
-
             if(transform.position==objetivo.position)
             {
                 //esto es para comprobar : si el objetivo esta en el target regresa el target a la posicion principal de la plataforma...si no lo esta sigue llendo
                 objetivo.position = (objetivo.position == inicio) ? fin : inicio;
 
             }
+
 
 
         }
