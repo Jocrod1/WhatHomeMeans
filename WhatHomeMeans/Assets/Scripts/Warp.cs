@@ -24,7 +24,7 @@ public class Warp : MonoBehaviour {
         GetComponent<SpriteRenderer>().enabled = false;
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         t = Camera.main.GetComponent<FollowTarget>();
-        Panel = GameObject.Find("Canvas").transform.GetChild(1).GetComponent<Image>();
+        Panel = GameObject.Find("Canvas").transform.GetChild(0).GetComponent<Image>();
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D other) {
@@ -36,6 +36,8 @@ public class Warp : MonoBehaviour {
             yield return new WaitForSeconds(fadetime);
 
             other.transform.position = Target.transform.GetChild(0).transform.position;
+
+            //t.ChangeLimits();
 
             t.Isfade = true;
             

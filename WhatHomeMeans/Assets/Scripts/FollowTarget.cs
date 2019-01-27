@@ -31,6 +31,9 @@ public class FollowTarget : MonoBehaviour {
     public bool XMinEnabled = false;
     public float XMinValue = 0;
 
+    public float XMinNext;
+    public float XMaxNext;
+
 
     void Start() {
     
@@ -66,6 +69,12 @@ public class FollowTarget : MonoBehaviour {
         targetPos.z = transform.position.z;
         //using smooth damp we will gradually change the camera transform position to the target position based on the camera transform velocity and out smooth time
         if (Isfade) {
+            float TempMin = XMinValue;
+            float TempMax = XMaxValue;
+            XMinValue = XMinNext;
+            XMaxValue = XMaxNext;
+            XMinNext = TempMin;
+            XMaxNext = TempMax;
             Isfade = false;
             transform.position = target.position + Vector3.forward * -8.76f;
         }
@@ -106,6 +115,15 @@ public class FollowTarget : MonoBehaviour {
 
         Cam.transform.localPosition = OriginalPos;
 
+    }
+
+    public void ChangeLimits() {
+        float TempMin = XMinValue;
+        float TempMax = XMaxValue;
+        XMinValue = XMinNext;
+        XMaxValue = XMaxNext;
+        XMinNext = TempMin;
+        XMaxNext = TempMax;
     }
 
     public Vector3 targetPos;
