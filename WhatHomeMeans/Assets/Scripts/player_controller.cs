@@ -15,10 +15,13 @@ public class player_controller : MonoBehaviour {
 
     public float logVelocity;
 
+    Collider2D GroundColl;
+
 	// Use this for initialization
 	void Start () {
         Anim = GetComponent<Animator>();
 		RB= GetComponent<Rigidbody2D>();
+        GroundColl = GetComponentInChildren<Collider2D>();
 	}
 	
 	// Update is called once per frame

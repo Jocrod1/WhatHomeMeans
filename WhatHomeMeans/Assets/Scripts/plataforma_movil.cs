@@ -17,6 +17,8 @@ public Transform objetivo;
 
     private bool disparador;
 
+    bool entrar;
+
 	// Use this for initialization
 	void Start () {
 
@@ -62,7 +64,7 @@ public Transform objetivo;
 
                 //esto es para comprobar : si el objetivo esta en el target regresa el target a la posicion principal de la plataforma...si no lo esta sigue llendo
                 
-				if(trigger_plataforma.entrar==true)
+				if(entrar==true)
 				{
 					Player.transform.parent = suelo_movible.transform;
 					objetivo.position=fin;
@@ -70,7 +72,7 @@ public Transform objetivo;
                     disparador= true;
 
 				}
-				else if (trigger_plataforma.entrar==false && disparador)
+				else if (entrar==false && disparador)
 				{
 					Player.transform.parent = null;
 					objetivo.position=inicio;
@@ -87,6 +89,21 @@ public Transform objetivo;
     }
 
 
+    void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            entrar = true;
+        }
 
+    }
+
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            entrar = false;
+        }
+    }
 
 }
