@@ -17,6 +17,8 @@ public class player_controller : MonoBehaviour {
 
     public BoxCollider2D GroundColl;
 
+    public bool WithFood;
+
 	// Use this for initialization
 	void Start () {
         Anim = GetComponent<Animator>();
